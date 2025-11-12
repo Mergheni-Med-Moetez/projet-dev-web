@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Tableau de bord Admin</h1>
+<ul>
+  <li><a href="{{ path('produit_index') }}">Produits</a></li>
+  <li><a href="{{ path('categorie_index') }}">Catégories</a></li>
+  <li><a href="{{ path('commande_index') }}">Commandes</a></li>
+  <li><a href="{{ path('utilisateur_index') }}">Utilisateurs</a></li>
+</ul>
+{% endblock %}

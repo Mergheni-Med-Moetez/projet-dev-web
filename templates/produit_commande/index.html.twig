@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProduitCommande index{% endblock %}
+
+{% block body %}
+    <h1>ProduitCommande index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>PrixUnitaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for produit_commande in produit_commandes %}
+            <tr>
+                <td>{{ produit_commande.id }}</td>
+                <td>{{ produit_commande.quantite }}</td>
+                <td>{{ produit_commande.prixUnitaire }}</td>
+                <td>
+                    <a href="{{ path('app_produit_commande_show', {'id': produit_commande.id}) }}">show</a>
+                    <a href="{{ path('app_produit_commande_edit', {'id': produit_commande.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_produit_commande_new') }}">Create new</a>
+{% endblock %}
