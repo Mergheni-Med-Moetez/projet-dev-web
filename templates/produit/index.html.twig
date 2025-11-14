@@ -1,43 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Produit index{% endblock %}
+{% block title %}Gestion des Produits{% endblock %}
 
 {% block body %}
-    <h1>Produit index</h1>
+<div class="mb-4 d-flex justify-content-between align-items-center">
+    <h2><i class="bi bi-box-seam"></i> Produits</h2>
+    <a href="{{ path('app_produit_new') }}" class="btn btn-primary">
+        <i class="bi bi-plus"></i> Nouveau produit
+    </a>
+</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Descrption</th>
-                <th>Prix</th>
-                <th>Stock</th>
-                <th>DateCreation</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for produit in produits %}
-            <tr>
-                <td>{{ produit.id }}</td>
-                <td>{{ produit.nom }}</td>
-                <td>{{ produit.descrption }}</td>
-                <td>{{ produit.prix }}</td>
-                <td>{{ produit.stock }}</td>
-                <td>{{ produit.dateCreation ? produit.dateCreation|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_produit_new') }}">Create new</a>
+<table class="table table-hover shadow-sm">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Catégorie</th>
+            <th>Prix</th>
+            <th>Stock</th>
+            <th>Date création</th>
+            <th style="width:160px">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for produit in produits %}
+        <tr>
+            <td>{{ produit.id }}</td>
+            <td>{{ produit.nom }}</td>
+            <td>{{ produit.categorie ? produit.categorie.nom : 'Aucune' }}</td>
+            <td>{{ produit.prix }} DT</td>
+            <td>{{ produit.stock }}</td>
+            <td>{{ produit.dateCreation ? produit.dateCreation|date('d/m/Y') : '' }}</td>
+            <td>
+                <a href="{{ path('app_produit_show', {'id': produit.id}) }}" class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-eye"></i>
+                </a>
+                <a href="{{ path('app_produit_edit', {'id': produit.id}) }}" class="btn btn-outline-success btn-sm">
+                    <i class="bi bi-pencil"></i>
+                </a>
+                {# Optionnel : bouton suppression via formulaire #}
+                {{ include('produit/_delete_form.html.twig') }}
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="7" class="text-center">Aucun produit trouvé.</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
 {% endblock %}

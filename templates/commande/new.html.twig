@@ -1,11 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Commande{% endblock %}
+{% block title %}Ajouter une Commande{% endblock %}
 
 {% block body %}
-    <h1>Create new Commande</h1>
-
-    {{ include('commande/_form.html.twig') }}
-
-    <a href="{{ path('app_commande_index') }}">back to list</a>
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+        <div class="card shadow my-4">
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-card-list"></i> {{ block('title') }}
+                </h4>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form_row(form.dateCommande) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.client) }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.total) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.status) }}
+                    </div>
+                    <div class="d-flex justify-content-between mt-3">
+                        <button class="btn btn-success"><i class="bi bi-check-circle"></i> Enregistrer</button>
+                        <a class="btn btn-outline-secondary" href="{{ path('app_commande_index') }}">
+                            <i class="bi bi-arrow-left"></i> Retour
+                        </a>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

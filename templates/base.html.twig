@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons (optionnel, stylé !) -->
+    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         body {
@@ -45,12 +45,14 @@
 <body>
     <div class="sidebar d-flex flex-column align-items-start vh-100">
         <h3 class="text-white mb-4"><i class="bi bi-shop"></i> Admin Panel</h3>
-        <a href="{{ path('dashboard_index') }}" class="{% if app.request.attributes.get('_route') == 'dashboard_index' %}active{% endif %}"><i class="bi bi-house"></i> Dashboard</a>
-        <a href="{{ path('produit_index') }}" class="{% if app.request.attributes.get('_route') starts with 'produit' %}active{% endif %}"><i class="bi bi-box-seam"></i> Produits</a>
-        <a href="{{ path('categorie_index') }}" class="{% if app.request.attributes.get('_route') starts with 'categorie' %}active{% endif %}"><i class="bi bi-collection"></i> Catégories</a>
-        <a href="{{ path('commande_index') }}" class="{% if app.request.attributes.get('_route') starts with 'commande' %}active{% endif %}"><i class="bi bi-card-list"></i> Commandes</a>
-        <a href="{{ path('utilisateur_index') }}" class="{% if app.request.attributes.get('_route') starts with 'utilisateur' %}active{% endif %}"><i class="bi bi-people"></i> Utilisateurs</a>
-        <!-- Ajoute d'autres liens ici si besoin -->
+
+        <a href="{{ path('home') }}" class="{% if app.request.attributes.get('_route') == 'home' %}active{% endif %}"><i class="bi bi-house-door"></i> Accueil</a>
+        <a href="{{ path('dashboard_index') }}" class="{% if app.request.attributes.get('_route') == 'dashboard_index' %}active{% endif %}"><i class="bi bi-speedometer2"></i> Dashboard</a>
+        <a href="{{ path('app_produit_index') }}" class="{% if app.request.attributes.get('_route') starts with 'app_produit' %}active{% endif %}"><i class="bi bi-box-seam"></i> Produits</a>
+        <a href="{{ path('app_categorie_index') }}" class="{% if app.request.attributes.get('_route') starts with 'app_categorie' %}active{% endif %}"><i class="bi bi-collection"></i> Catégories</a>
+        <a href="{{ path('app_commande_index') }}" class="{% if app.request.attributes.get('_route') starts with 'app_commande' %}active{% endif %}"><i class="bi bi-card-list"></i> Commandes</a>
+        <a href="{{ path('app_utilisateur_index') }}" class="{% if app.request.attributes.get('_route') starts with 'app_utilisateur' %}active{% endif %}"><i class="bi bi-people"></i> Utilisateurs</a>
+
         <hr class="text-secondary w-100">
         <a href="#" class=""><i class="bi bi-box-arrow-right"></i> Déconnexion</a>
     </div>
