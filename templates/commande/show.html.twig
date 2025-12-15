@@ -1,34 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Commande{% endblock %}
+{% block title %}Détails Commande #{{ commande.id }}{% endblock %}
 
 {% block body %}
-    <h1>Commande</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ commande.id }}</td>
-            </tr>
-            <tr>
-                <th>DateCommande</th>
-                <td>{{ commande.dateCommande ? commande.dateCommande|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Total</th>
-                <td>{{ commande.total }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ commande.status }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_commande_index') }}">back to list</a>
-
-    <a href="{{ path('app_commande_edit', {'id': commande.id}) }}">edit</a>
-
-    {{ include('commande/_delete_form.html.twig') }}
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+        <div class="card shadow my-4">
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-card-list"></i>
+                    Détails Commande
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Date</label>
+                        <input type="text" value="{{ commande.dateCommande ? commande.dateCommande|date('d/m/Y') : '' }}" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Client</label>
+                        <input type="text" value="{{ commande.client ? commande.client.nom : 'Inconnu' }}" class="form-control" readonly>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Total</label>
+                    <input type="text" value="{{ commande.total }} DT" class="form-control-plaintext" readonly>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <input type="text" value="{{ commande.status }}" class="form-control-plaintext" readonly>
+                </div>
+                <div class="d-flex justify-content-between mt-3">
+                    <a class="btn btn-outline-secondary" href="{{ path('app_commande_index') }}">
+                        <i class="bi bi-arrow-left"></i> Retour
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

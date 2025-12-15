@@ -1,13 +1,54 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Produit{% endblock %}
+{% block title %}Ajouter un Produit{% endblock %}
 
 {% block body %}
-    <h1>Edit Produit</h1>
-
-    {{ include('produit/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_produit_index') }}">back to list</a>
-
-    {{ include('produit/_delete_form.html.twig') }}
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+        <div class="card shadow my-4">
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-box-seam"></i>
+                    {{ block('title') }}
+                </h4>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form_row(form.nom) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.categorie) }}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form_row(form.prix) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.stock) }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(form.descrption) }}
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            {{ form_row(form.dateCreation) }}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <button class="btn btn-success">
+                            <i class="bi bi-check-circle"></i> Enregistrer
+                        </button>
+                        <a class="btn btn-outline-secondary" href="{{ path('app_produit_index') }}">
+                            <i class="bi bi-arrow-left"></i> Retour
+                        </a>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
